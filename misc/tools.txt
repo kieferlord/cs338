@@ -1,0 +1,9 @@
+1. ipconfig getifaddr en0 --> 10.133.16.59 (https://apple.stackexchange.com/questions/20547/how-do-i-find-my-ip-address-from-the-command-line)
+2. ifconfig (from class)
+3. host [IP address] (https://apple.stackexchange.com/questions/98554/get-computer-name-from-ip-address)
+4. scp /path/to/local/file remote_user@remote_host:/path/to/remote/file (https://askubuntu.com/questions/59946/how-to-copy-file-to-another-machine-through-terminal)
+5. lsof -i :[port]    shows the processes running on the specified port (https://www.tecmint.com/find-out-which-process-listening-on-a-particular-port/)
+6. sudo lsof -i -P -n | grep LISTEN	shows host IP addresses, ports, and process names (https://www.cyberciti.biz/faq/unix-linux-check-if-port-is-in-use-command/)
+7. wget [url] (https://unix.stackexchange.com/questions/528439/saving-web-browser-page-through-terminal)
+8. curl -v [url]   lines that start with < are the response header.
+9. curl -v [url]   lines that start with > are the request header.
