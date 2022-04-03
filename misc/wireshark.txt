@@ -1,0 +1,37 @@
+Kiefer Lord
+
+====DAYTIME====
+
+1. 
+	1	0.000000000	172.16.191.128	132.163.96.1	TCP	74	44080 → 13 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 SACK_PERM=1 TSval=1228679377 TSecr=0 WS=128
+
+	2	0.025720138	132.163.96.1	172.16.191.128	TCP	60	13 → 44080 [SYN, ACK] Seq=0 Ack=1 Win=64240 Len=0 MSS=1460
+
+2. 44080. The client needs a port to identify the specific software program on the machine that is requesting information.
+
+3. 4	0.050895090	132.163.96.1	172.16.191.128	DAYTIME	105	DAYTIME Response
+
+4. 59672 22-04-03 21:32:30 50 0 0  31.9 UTC(NIST) *
+	The response is of the form JJJJJ YR-MO-DA HH:MM:SS TT L H msADV UTC(NIST) OTM. The meanings of these arguments can be found in the documentation, at https://www.nist.gov/pml/time-and-frequency-division/time-distribution/internet-time-service-its
+
+5. It means the frame was used for synchronization between the client and server.
+
+6. It means that one machine acknowledged the message from the other machine.
+
+7. It means the client is ending the interaction with the server.
+
+8. The source port for the [FIN] frame is 44080, which means the client initiated the closing of the connection.
+
+====HTTP====
+
+1. I only see one "FIN" frame, so it seems like there was only one connection.
+
+2. 7	0.045309834	172.16.191.128	45.79.89.123	HTTP	395	GET /index.html HTTP/1.1 
+
+3. 11	0.150621956	172.16.191.128	45.79.89.123	HTTP	364	GET /jeff_square_head.jpg HTTP/1.1
+
+====QUESTIONS====
+
+What is a [PSH] frame?
+Are we able to use Wireshark if the connection is encrypted? I assume not.
+Why do the IP, Ethernet, etc. headers look like gibberish?
