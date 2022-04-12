@@ -1,0 +1,21 @@
+Kiefer Lord
+12 April 2022
+
+===== Diffie-Hillman =====
+g=11, p=59
+A = 57 = g^X mod p. With a python for loop, I found that 11^36 mod 59 = 57, so X = 36.
+B = 44 = g^Y mod p. With a python for loop, I found that 11^15 mod 59 = 44, so Y = 15.
+This step would not be feasible with larger numbers, because it is essentially guess and check. 
+
+A^Y mod p = 57^15 mod 59 = 36
+B^X mod p = 44^36 mod 59 = 36
+
+Therefore, the shared secret is 36.
+
+===== RSA =====
+See eve.py for the code I used for this.
+For each number m in the message, I looped through integers until I found an x such that
+m = x^13 mod 5561. This step would not be feasible with larger numbers. Then, I converted each x to an ASCII character.
+The resulting decrypted message is:
+
+Hey Bob. It's even worse than we thought! Your pal, Alice. https://www.schneier.com/blog/archives/2022/04/airtags-are-used-for-stalking-far-more-than-previously-reported.html
