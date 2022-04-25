@@ -1,0 +1,26 @@
+Kiefer Lord
+25 April 2022
+
+
+1. Alice and Bob use Diffie-Hellman to agree on a shared secret key K. Alice then splits the message up into blocks according to the block cipher mode, encrypts each block using AES, and sends that ciphertext to Bob. Bob decrypts the cipher text using K to obtain the message.
+
+2. Alice and Bob use Diffie-Hellman to agree on a shared secret key K. Alice then signs the message by appending H(M) to the message. Then she splits the message up into blocks according to the block cipher mode, encrypts each block using AES, and sends that ciphertext to Bob. Bob decrypts the cipher text using K to obtain the original message along with the hashed message. Bob computes H(M), and he will know that Mal modified the message if Alice's signature doesn't match H(M).
+
+3. Alice encrypts M into C = E(S_A, M) (using the appropriate block cipher mode to split up the message as needed), and signs the document: D = C || E(S_A, H(M)). Alice sends D to Bob, who computes M = E(P_A, C) and h = E(P_A, E(S_A, H(M))) = H(M). If h == H(M), we know Alice sent the message because we used her public key to successfully decrypt the message.
+
+4. 
+	A. Mal could have pretended to be Alice, sending Bob a contract that was signed and encrypted using Mal's private key. Bob would then decrypt the message using Mal's public key thinking it was Alice's. This would be plausible, and easy to check by comparing the document sent by Alice and the document received by Bob.
+
+	B. Bob could have pretended to receive a different contract from Alice than the one Alice actually signed. This is somewhat plausible, although it's not the smartest move from Bob because we can easily compare the contract Alice signed and the one Bob claims to have received.
+
+	C. Alice could claim that there was some sort of hardware malfunction or bug while it was being sent back to Bob, causing the contract to be altered. This is highly unlikely.
+
+5. Sig_CA = E(S_CA, H(D)), where D is the following document: "bob.com" || P_B
+
+6. Alice could pick a random number R, and send Bob E(P_B, R). Bob then sends Alice E(S_B, E(P_B, R))
+which will be equal to R if and only if Bob has the correct private key. If Alice receives something other than R, Bob doesn't have the correct private key.
+
+7.
+	A. Alice and Bob place full trust in the certificate authority when deciding whether to trust each other. But if Mal had control over the CA, Mal could vouch for himself and pretend to be Bob.
+
+	B. If Mal stole Bob's private key, Mal could pose as Bob to both the CA and Alice.
