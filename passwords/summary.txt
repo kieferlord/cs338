@@ -1,0 +1,19 @@
+Kiefer Lord
+
+Part 1
+Total time:
+Number of hashes: 381689897
+Passwords cracked: 2805
+Time per hash: 1.6*10^-6 seconds
+Time per password: 0.21 seconds
+
+Part 2:
+One password took too long to compute. This shows that two word passwords take significantly longer to crack than one-word passwords.
+
+Part 3:
+I wasn't able to get the hash of (salt || moose) to match the password in the file. Not sure what you hashed in order to get 8a604057b98aff07885d29eea97e885e.
+
+Analysis:
+It would take 256*(number of words) to store all the hashes in part 1. It would take 256*(number of words)^2 to store all the hashes in part 2. It would take 256*(number of words)*(number of possible salts) to store all the hashes in part 3.
+
+Storing the passwords in plaintext would make it simple for people to obtain the passwords if someone got a hold of the password file. If we store the hashes, someone has to do these heavy computations to find the actual password once they get the password file. Also, if someone peeks over your shoulder, they can't see your passwords in plaintext. Also, there are passwords on your machine that might only be visible to sudo users, so this protects users' privileges.
